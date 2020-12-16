@@ -32,7 +32,7 @@ def get_max_crop(arr):
     x1 = 0
     while np.nonzero(y_mean[x1,:])[0].size == 0:
         x1 += 1
-    x2 = y_mean.shape[1]
+    x2 = y_mean.shape[0]
     while np.nonzero(y_mean[x2-1,:])[0].size == 0:
         x2 -= 1
 
