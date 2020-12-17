@@ -754,10 +754,10 @@ class CycleGAN():
             reconstructed_image_B = self.G_A2B.predict(synthetic_image_A)
 
             self.truncateAndSave(real_image_Ab, real_image_A, synthetic_image_B, reconstructed_image_A,
-                                 'images/{}/{}/epoch{}_sample{}.nii.gz'.format(
+                                 '/outdata/images/{}/{}/epoch{}_sample{}.nii.gz'.format(
                                      self.date_time, 'A' + testString, epoch, i))
             self.truncateAndSave(real_image_Ba, real_image_B, synthetic_image_A, reconstructed_image_B,
-                                 'images/{}/{}/epoch{}_sample{}.nii.gz'.format(
+                                 '/outdata/images/{}/{}/epoch{}_sample{}.nii.gz'.format(
                                      self.date_time, 'B' + testString, epoch, i))
 
     def save_tmp_images(self, real_image_A, real_image_B, synthetic_image_A, synthetic_image_B):
@@ -770,7 +770,7 @@ class CycleGAN():
             reconstructed_images = np.vstack((reconstructed_image_A[0], reconstructed_image_B[0]))
 
             self.truncateAndSave(None, real_images, synthetic_images, reconstructed_images,
-                                 'images/{}/{}.nii.gz'.format(
+                                 '/outdata/images/{}/{}.nii.gz'.format(
                                      self.date_time, 'tmp'))
         except: # Ignore if file is open
             pass
@@ -833,7 +833,7 @@ class CycleGAN():
 
     def writeLossDataToFile(self, history):
         keys = sorted(history.keys())
-        with open('images/{}/loss_output.csv'.format(self.date_time), 'w') as csv_file:
+        with open('/outdata/images/{}/loss_output.csv'.format(self.date_time), 'w') as csv_file:
             writer = csv.writer(csv_file, delimiter=',')
             writer.writerow(keys)
             writer.writerows(zip(*[history[key] for key in keys]))
@@ -872,7 +872,7 @@ class CycleGAN():
             'number of B test examples': len(self.B_test),
         })
 
-        with open('images/{}/meta_data.json'.format(self.date_time), 'w') as outfile:
+        with open('/outdata/images/{}/meta_data.json'.format(self.date_time), 'w') as outfile:
             json.dump(data, outfile, sort_keys=True)
 
     def load_model_and_weights(self, model):
