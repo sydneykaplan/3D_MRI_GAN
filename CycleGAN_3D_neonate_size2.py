@@ -30,7 +30,7 @@ np.random.seed(seed=12346)
 
 
 class CycleGAN():
-    def __init__(self, lr_D=2e-4, lr_G=2e-4, image_shape=(140, 166, 144, 1), 
+    def __init__(self, lr_D=2e-4, lr_G=2e-4, image_shape=(140, 168, 144, 1), 
                  date_time_string_addition='', image_folder='MR_crop'):
         self.img_shape = image_shape
         self.channels = self.img_shape[-1]
@@ -46,7 +46,7 @@ class CycleGAN():
         self.beta_1 = 0.5
         self.beta_2 = 0.999
         self.batch_size = 1
-        self.epochs = 150  # choose multiples of 25 since the models are save each 25th epoch
+        self.epochs = 200  # choose multiples of 25 since the models are save each 25th epoch
         self.save_interval = 1
         self.synthetic_pool_size = 50
 
