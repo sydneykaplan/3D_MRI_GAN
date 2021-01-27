@@ -687,8 +687,11 @@ class CycleGAN():
         return loss
 
     def cycle_loss(self, y_true, y_pred):
-        loss = tf.reduce_mean(tf.abs(y_pred - y_true))
-        loss = loss - tf.multiply(tf.divide(tf.log(tf.reduce_max(y_pred)), tf.log(10.0)), 20.0) + tf.multiply(tf.divide(tf.log(loss), tf.log(10.0)), 10.0)
+        loss1 = tf.reduce_mean(tf.abs(y_pred - y_true))
+		print("mae is: ", loss1)
+		loss2 = tf.multiply(tf.divide(tf.log(tf.reduce_max(y_pred)), tf.log(10.0)), 20.0) + tf.multiply(tf.divide(tf.log(loss), tf.log(10.0)), 10.0)
+		print("psnr is: ", loss2)
+        loss = loss1 - tf.divide(loss2, 10)
         return loss
 
     def truncateAndSave(self, real_, real, synthetic, reconstructed, path_name):
